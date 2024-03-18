@@ -126,9 +126,30 @@ input[type="text"]:hover {
 }
 }
   </style>
+<title>Convertor de șiruri binare</title>
+    <script>
+        function convertAndPad(input) {
+            let sanitizedInput = input.replace(/\s/g, '');
+            sanitizedInput = sanitizedInput.substring(0, 16);
+            sanitizedInput = sanitizedInput.replace(/[^01]/g, '');
+            document.getElementById("InputConv").value = sanitizedInput;
+            updateConvertedValue();
+        }
+        function updateConvertedValue() {
+            let input = document.getElementById("InputConv").value;
+            if(input.length < 16){
+                input = "0".repeat(16 - input.length) + input;
+            }
+            document.getElementById("InputConverted").value = input;
+        }
+    </script>
 </head>
 <body>
-    <script src="script.js"></script>
-	 <button onclick="location.href = 'Converter.html';">Test converter</button> 
+    <label>Ce trebe convertit:</label>
+    <input type="text" id="InputConv" oninput="convertAndPad(this.value)" maxlength="16">
+    <br>
+    <label>Bitii forma convertita:</label>
+    <input type="text" id="InputConverted">
+</body>
 </body>
 </html>
